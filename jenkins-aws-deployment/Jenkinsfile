@@ -1,1 +1,16 @@
-
+pipeline {
+  agent any
+  stages {
+    stage('Launch EC2 Instance')
+      steps {
+        scrips {
+          sh '''
+          aws ec2 run-instances --image-id ami-084568db4383264d4
+          --count 1 --instance-type t2.micro --key-name key --security-group-ids 	
+          sg-04cc6351bf01069cd --subnet-id subnet-064c1d1353b8107c0
+           '''
+        }
+      }
+  }
+}
+}
